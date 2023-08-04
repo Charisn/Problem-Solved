@@ -1,0 +1,6 @@
+Mass Image Renamer
+In a mass product images import from an older e-shop database to a new database for one of our ERPs, a partner encountered an issue.
+How would he assign the images to the products since the ids were renewed from int to guid?
+Also there were some extra variables that he needed to take into consideration.
+
+When the issue came into my attention i created this php script that renames the images into the id(model) which was a good unique identifier + some variables required into the ERP for a proper migration, which we then downloaded localy and with a mysql script could be able to insert them into the ERP database via their name.
