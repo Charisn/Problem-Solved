@@ -1,0 +1,9 @@
+When manually migrating data from different types of databases into an opencart 3 database there were instances were products were shown into the lists of a parent category but when clicked redirected to a 404 page.
+
+Opencart has a requirement for products were if you have a products into a child category, it needs to have all of its parent categories aswell in order to work.
+
+In some cases, databases only had the id of the child category and it was not time efficient to do it for 1-1 products each time.
+
+So i created this mysql query to insert into table product_category its category parent_id up until category_id = 0 ( which was the last parent ).
+
+This should be run it as many times as the e-shops categories levels.

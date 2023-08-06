@@ -1,0 +1,9 @@
+Before and during the release of our api v1 for standard e-shops integrated by all Epsilon ERPS to create ecommerce pressence for all clients, we had approximately 3000+ test e-shops for testing the integration in different levels.
+
+During this time we encountered an issue of the server space. We realised that the server was completely full and we started an operation to delete all test e-shops.
+
+After successfully deleting all of them we realised that after a routine operation for ssl configs, all those e-shops "came back from the dead".
+
+After some digging we realised that our main integrations logic for deleting the e-shop encountered an error during the delete subdomain. 
+
+I created a php script in the server that finds all the "undead" subdomains, deletes their subdomain from cpanel calling a different file i created utilizing cpanel api and then deleting its dir.

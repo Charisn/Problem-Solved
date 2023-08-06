@@ -1,0 +1,30 @@
+After a full migration into an e-shop, options were presented in front end with alphabetical order.
+
+In the data we had , sort orders in options were not set and we needed a fast solution to present the final result according to all of customers requests
+
+One of these requess was to present the options in the select boxes with the order he had inserted them into the database.
+
+Database stored in table options: option_id , option_value_id , name and sort_order, which was defaulting to 0 if not set.
+
+Inserting in all options 1-1 the sort orders was not time efficient for more than 2.000 options so i came up with this mysql query.
+
+What it does is it creates a number from 1 and increments it by 1 for each update.
+
+Every time option_id changes it resets the incrementation to 1.
+
+Option_id refers to the select box and option_value_id refers to the values inside that box.
+
+Expected outcome:
+
+Color (option) 
+Red (option value) - sort_order = 1
+Green (option value) - sort_order = 2
+Black (option value) - sort_order = 1
+Purple (option value) - sort_order = 3
+
+~Reset increment~
+
+Size (option)
+Small  (option value) - sort_order = 1
+Medium (option value) - sort_order = 2
+Large (option value) - sort_order = 3
