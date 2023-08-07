@@ -1,0 +1,14 @@
+This is an operation i tried for a complex data migration.
+
+We were presented with a false xlsx of data. 
+
+There were multiple ids mixed with models. Many of the ids were not integers and could not even be stored.
+
+The presented data were so mixed up we could not even manually collect them.
+
+We also had to migrate product options from an older system of ours into a newer one in order to make a customers request fulfilled which was also a complicated task too.
+
+These python scripts do several different jobs collecting and matching data from different xl sheets creating a single sheet of managable for me data which i then took and recreate a single xl which was 
+easier for us to store into the database.
+
+Scripts require the files path in order to execute and a library called panda s.
