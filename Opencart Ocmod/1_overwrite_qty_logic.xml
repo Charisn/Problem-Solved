@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name>Add Product Stock Status text</name>
+  <code>module-product-stock-status-text</code>
+  <version>1.0</version>
+  <author>C.N</author>
+  <link>https://www.digital4u.gr</link>
+  <file path="catalog/controller/product/product.php">
+    <operation>
+      <search><![CDATA[if ($product_info['quantity'] <= 0) {]]></search>
+      <add position="before"><![CDATA[$data['stock_status_id'] = $product_info['stock_status_id'];]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[if ($product_info['quantity'] <= 0) {]]></search>
+      <add position="replace"><![CDATA[if ($product_info['quantity'] || $product_info) {]]></add>
+    </operation>
+  </file>
+  <file path="catalog/view/theme/digital4u/template/product/product.twig">
+    <operation>
+      <search><![CDATA[id="button-cart"]]></search>
+      <add position="replace"><![CDATA[id="button-cart" {% if stock_status_id == 5 %}style="background:black;" disabled{% endif %}]]></add>
+    </operation>
+  </file>
+  <file path="catalog/model/catalog/product.php">
+    <operation>
+      <search><![CDATA['stock_status'     => $query->row['stock_status'],]]></search>
+      <add position="after"><![CDATA['stock_status_id'     => $query->row['stock_status_id'],]]></add>
+    </operation>
+   </file>
+   <file path="catalog/controller/product/{category,search,manufacturer_info}.php">
+    <operation>
+      <search><![CDATA['price'       => $price,]]></search>
+      <add position="after"><![CDATA['stock_status_id' => $result['stock_status_id'],]]></add>
+    </operation>
+   </file>
+  <file path="catalog/view/theme/digital4u/template/product/{category,search,manufacturer_info}.twig">
+    <operation error="skip">
+      <search><![CDATA[<div class="button-group">]]></search>
+      <add position="before"><![CDATA[ 
+      {% if product.stock_status_id != 5 %}
+        ]]></add>
+    </operation>
+    <operation>
+      <search index="2"><![CDATA[</svg></button>]]></search>
+      <add position="after"><![CDATA[
+        {% else %} 
+            <div style="font-weight: bold; padding-left: 10px; font-size: 16px; padding-right: 10px;"> {{ text_stock_status }}
+        {% endif %}
+    ]]></add>
+    </operation>
+  </file>
+  
+   <file path="catalog/language/el-gr/product/{category,search,manufacturer_info}.php">
+    <operation>
+      <search><![CDATA[$_['text_limit']        = 'Εμφάνιση:';]]></search>
+      <add position="after"><![CDATA[$_['text_stock_status']        = 'ΜΗ ΔΙΑΘΕΣΙΜΟ';]]></add>
+    </operation>
+   </file>
+   <file path="catalog/language/en-gb/product/{category,search,manufacturer_info}.php">
+    <operation>
+      <search><![CDATA[$_['text_limit']        = 'Show:';]]></search>
+      <add position="after"><![CDATA[$_['text_stock_status']        = 'OUT OF STOCK';]]></add>
+    </operation>
+   </file>
+   
+  <file path="catalog/view/theme/digital4u/template/extension/module/{featured,products_carousel,recently_viewed}.twig">
+    <operation error="skip">
+      <search><![CDATA[<div class="button-group">]]></search>
+      <add position="before"><![CDATA[ 
+      {% if product.stock_status_id != 5 %}
+        ]]></add>
+    </operation>
+    <operation>
+      <search index="2"><![CDATA[</svg></button>]]></search>
+      <add position="after"><![CDATA[
+        {% else %} 
+            <div style="font-weight: bold; padding-left: 10px; font-size: 16px; padding-right: 10px;"> {{ text_stock_status }}
+        {% endif %}
+    ]]></add>
+    </operation>
+  </file>
+   <file path="catalog/controller/extension/module/{featured,products_carousel}.php">
+    <operation error="skip">
+      <search><![CDATA['special'     => $special,]]></search>
+      <add position="after"><![CDATA['stock_status_id'     => $product_info['stock_status_id'],]]></add>
+    </operation>
+   </file>
+   <file path="catalog/controller/extension/module/recently_viewed.php">
+    <operation error="skip">
+      <search><![CDATA['special'     => $special,]]></search>
+      <add position="after"><![CDATA['stock_status_id'     => $result['stock_status_id'],]]></add>
+    </operation>
+   </file>
+   
+   <file path="catalog/language/el-gr/extension/module/{featured,products_carousel,recently_viewed}.php">
+    <operation error="skip">
+      <search><![CDATA[<?php]]></search>
+      <add position="after"><![CDATA[$_['text_stock_status']        = 'ΜΗ ΔΙΑΘΕΣΙΜΟ';]]></add>
+    </operation>
+   </file>
+   <file path="catalog/language/en-gb/extension/module/{featured,products_carousel,recently_viewed}.php">
+    <operation error="skip">
+      <search><![CDATA[<?php]]></search>
+      <add position="after"><![CDATA[$_['text_stock_status']        = 'OUT OF STOCK';]]></add>
+    </operation>
+   </file>
+</modification>
