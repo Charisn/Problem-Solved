@@ -1,14 +1,7 @@
-This is an operation i tried for a complex data migration.
+Recently, I was entrusted with a substantial data migration task, which, to put it mildly, presented several challenges. Upon receiving an Excel file, ostensibly containing the necessary data, I was met with a chaotic assemblage of models and IDs. Disconcertingly, many of the IDs were not formatted as integers, thereby inhibiting their storability.
 
-We were presented with a false xlsx of data. 
+In tandem with this, I faced the task of migrating product options from an antiquated system to a more modern one, a customer requirement that was pivotal to fulfill.
 
-There were multiple ids mixed with models. Many of the ids were not integers and could not even be stored.
+My approach involved crafting several Python scripts, each with a specific role in collecting and aligning data from various Excel sheets. This process facilitated the creation of a singular, cohesive sheet, which I utilized to reconstruct a well-ordered Excel file. This resultant file proved far more manageable and was seamlessly stored into our database.
 
-The presented data were so mixed up we could not even manually collect them.
-
-We also had to migrate product options from an older system of ours into a newer one in order to make a customers request fulfilled which was also a complicated task too.
-
-These python scripts do several different jobs collecting and matching data from different xl sheets creating a single sheet of managable for me data which i then took and recreate a single xl which was 
-easier for us to store into the database.
-
-Scripts require the files path in order to execute and a library called panda s.
+For those familiar with data troubleshooting, employing scripts and utilizing a library like "pandas" can significantly streamline such a time-intensive process.
