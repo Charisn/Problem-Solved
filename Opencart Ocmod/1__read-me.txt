@@ -1,4 +1,4 @@
-This is an ocmod for opencart 3 were it overrides the current quantity logic.
+This is an ocmod for opencart 3 where it overrides the current quantity logic.
 
 Practically, when in settings option Live Stock for Products is turned off, you can disregard completely the quantity, using only stock the stock status of a product.
 
